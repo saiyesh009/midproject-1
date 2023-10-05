@@ -2,13 +2,13 @@ version: "3"
 services:
  springBootApp:
     image: saiyeshwanth009/student-details:1.0
-    deploy:
-      mode: replicated
-      replicas: 2
+    container_name: docker-postgres-springboot-microservices-app-1
+    # deploy:
+    #   mode: replicated
+    #   replicas: 2
     environment:
       - POSTGRES_HOST=docker-postgres-springboot-microservices-db-1 #domain  name
     ports:
-      - "9015:9012"
       - "9013:9012"
     networks:
       - network
