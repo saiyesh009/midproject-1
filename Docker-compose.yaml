@@ -2,7 +2,6 @@ version: "3"
 services:
  springBootApp:
     image: saiyeshwanth009/student-details:1.0
-    container_name: docker-postgres-springboot-microservices-app-1
     deploy:
       mode: replicated
       replicas: 2
