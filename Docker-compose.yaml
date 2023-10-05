@@ -1,0 +1,41 @@
+version: "3"
+services:
+ springBootApp:
+    image: saiyeshwanth009/student-details-1:1.0
+    container_name: docker-postgres-springboot-microservices-app-1
+    # deploy:
+    #   mode: replicated
+    #   replicas: 2
+    environment:
+      - POSTGRES_HOST=my-postgres-db # Hostname of the PostgreSQL container
+      - SERVER_PORT=9012
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresDb:5432/Mid_Project
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=159S@iYeshu*
+      - SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT=org.hibernate.dialect.PostgreSQLDialect
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=create
+    ports:
+      - "9013:9012"
+    networks:
+      - network
+    depends_on:
+      - postgresDb
+    restart: unless-stopped
+ postgresDb:
+  image: postgres:15.0
+  container_name: my-postgres-db
+  ports:
+   - "5432:5432"
+  networks:
+   - network
+  volumes:
+   - volume:/var/lib/postgresql/data
+  environment:
+   - POSTGRES_USER=postgres
+   - POSTGRES_PASSWORD=159S@iYeshu*
+   - POSTGRES_DB=Mid_Project
+networks:
+  network:
+volumes:
+  volume:
+
